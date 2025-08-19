@@ -1,11 +1,9 @@
 package org.example.jmh;
 
-import org.example.GreetingGenerator;
+import java.util.concurrent.TimeUnit;
+import org.example.Diffusion;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
-import org.openjdk.jmh.annotations.Warmup;
-
-import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
@@ -13,11 +11,12 @@ import java.util.concurrent.TimeUnit;
 @Fork(value = 1, warmups = 2)
 @Warmup(iterations = 2)
 public class SampleBenchmark {
+
   @Benchmark
   @Timeout(time = 5, timeUnit = TimeUnit.SECONDS)
-  public void sayHelloBenchmark(Blackhole bh) {
-      GreetingGenerator generator = new GreetingGenerator();
-      String output = generator.sayHello();
-      bh.consume(output);
+  public void RunTestsBenchmark(Blackhole bh) {
+    Diffusion sim = new Diffusion();
+    int[] output = sim.simulate(10, 10);
+    bh.consume(output);
   }
 }
