@@ -30,18 +30,4 @@ public class Diffusion {
     }
     return results;
   }
-
-  public double[][] simulateTrialsWithTime(int n, int m) {
-    double[][] results = new double[m][4];
-    for (int trial = 0; trial < m; trial++) {
-      double start_time = System.nanoTime();
-      int sim_pos = simulateTrial(n);
-      double end_time = System.nanoTime();
-      results[trial][0] = n;
-      results[trial][1] = trial + 1;
-      results[trial][2] = sim_pos;
-      results[trial][3] = (end_time - start_time) / 1000000;
-    }
-    return results;
-  }
 }
