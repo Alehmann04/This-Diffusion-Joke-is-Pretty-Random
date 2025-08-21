@@ -2,7 +2,7 @@ package diffusion;
 
 public class App {
 
-  public static void main(String[] args) {
+  static void runSim() {
     int runs = 5;
     int[] groups = { 10, 20, 50, 100 };
     double[][] results = new double[(groups.length * runs)][3];
@@ -28,5 +28,17 @@ public class App {
         (int) results[i][2]
       );
     }
+  }
+
+  static void writeData() {
+    DiffusedWrite sim = new DiffusedWrite();
+    int[] groups = { 30, 70 };
+    int trials = 10;
+    sim.simulateToFile(groups, trials);
+  }
+
+  public static void main(String[] args) {
+    //runSim();
+    writeData();
   }
 }
